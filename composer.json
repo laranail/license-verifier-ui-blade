@@ -1,0 +1,68 @@
+{
+    "name": "laranail/license-verifier-ui-blade",
+    "description": "Blade UI preset for laranail/license-verifier-ui \u2014 generates an owned, themeable Blade license UI (tailwind, bootstrap, alpine, unstyled, custom).",
+    "keywords": [
+        "laravel",
+        "license",
+        "blade",
+        "ui",
+        "preset",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://opensource.simtabi.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "php": "^8.4 || ^8.5",
+        "illuminate/support": "^13.0",
+        "illuminate/http": "^13.0",
+        "laranail/license-verifier-ui": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\Providers\\BladeServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/console"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/package-tools"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/license-verifier"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/license-verifier-ui"
+        }
+    ]
+}

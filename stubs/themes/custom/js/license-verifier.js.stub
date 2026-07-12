@@ -1,0 +1,37 @@
+/**
+ * Minimal interaction layer for the $PRESET_LABEL$ license UI ($THEME$ theme).
+ * Submits [data-lv-form] via fetch and writes the response into
+ * [data-lv-message]. Extend or replace to match your design system.
+ */
+(function () {
+    'use strict';
+
+    function csrf() {
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.getAttribute('content') : '';
+    }
+
+    async function submit(form) {
+        const res = await fetch(form.getAttribute('action'), {
+            method: (form.getAttribute('method') || 'POST').toUpperCase(),
+            headers: { 'X-CSRF-TOKEN': csrf(), Accept: 'application/json' },
+            body: new FormData(form),
+        });
+        let payload = {};
+        try { payload = await res.json(); } catch (e) { /* noop */ }
+        const el = form.querySelector('[data-lv-message]');
+        if (el) el.textContent = payload.message || (res.ok ? 'OK' : 'Error');
+
+        if (res.ok) {
+            const redirect = form.getAttribute('data-lv-redirect');
+            if (redirect) window.location.assign(redirect);
+        }
+    }
+
+    document.addEventListener('submit', function (event) {
+        const form = event.target.closest('[data-lv-form]');
+        if (!form) return;
+        event.preventDefault();
+        submit(form);
+    });
+})();

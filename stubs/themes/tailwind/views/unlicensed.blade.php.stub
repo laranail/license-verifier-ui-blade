@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ __('license-verifier::license-verifier.activation') }}</title>
+    {{-- Ready-to-use styling. Remove this CDN line once your app bundles Tailwind. --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="grid min-h-full place-items-center bg-slate-900 p-4 text-slate-100">
+    <main class="w-full max-w-md rounded-2xl bg-slate-800 p-8 shadow-2xl ring-1 ring-white/10">
+        <h1 class="mb-1 text-xl font-semibold">{{ __('license-verifier::license-verifier.activation') }}</h1>
+        <p class="mb-6 text-sm text-slate-400">{{ __('license-verifier::license-verifier.requires_activation') }}</p>
+
+        @include('$VIEW_NAMESPACE$::license-form')
+    </main>
+
+    <script src="{{ asset('$ASSET_PATH$/license-verifier.js') }}"></script>
+</body>
+</html>

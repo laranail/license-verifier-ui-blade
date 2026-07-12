@@ -1,0 +1,26 @@
+{{-- License settings panel (Tailwind + Alpine). Pass $info (LicenseInfo). --}}
+<section class="lv-settings-panel rounded-2xl bg-slate-800 p-6 text-slate-100 ring-1 ring-white/10" data-lv-settings>
+    <h2 class="mb-4 text-lg font-semibold">{{ __('license-verifier::license-verifier.license') }}</h2>
+    <dl class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+        <div>
+            <dt class="text-slate-400">{{ __('license-verifier::license-verifier.status') }}</dt>
+            <dd class="font-medium">{{ $info->status->label() ?? $info->status->value }}</dd>
+        </div>
+        <div>
+            <dt class="text-slate-400">{{ __('license-verifier::license-verifier.licensed_to') }}</dt>
+            <dd class="font-medium">{{ $info->licensedTo ?? '—' }}</dd>
+        </div>
+        <div>
+            <dt class="text-slate-400">{{ __('license-verifier::license-verifier.expires_at') }}</dt>
+            <dd class="font-medium">{{ $info->expiresAt ?? '—' }}</dd>
+        </div>
+    </dl>
+    <form method="POST" action="{{ route('$ROUTE_NAME_PREFIX$deactivate') }}" x-data="lvLicenseForm()"
+          x-on:submit.prevent="activate" class="mt-6" data-lv-form>
+        @csrf
+        <button type="submit" x-bind:disabled="loading"
+                class="rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-500 disabled:opacity-60">
+            {{ __('license-verifier::license-verifier.deactivate') }}
+        </button>
+    </form>
+</section>

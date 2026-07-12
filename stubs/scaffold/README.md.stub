@@ -1,0 +1,26 @@
+# $COMPOSER_NAME$
+
+A generated **license-verifier UI** package — $PRESET_LABEL$ (`$THEME` theme).
+It extends [`$BASE_PACKAGE$`](https://opensource.simtabi.com/license-verifier-ui-blade/),
+which carries the logic and ships updates; this package is **yours to own and edit**.
+
+## What you own
+
+- `src/Providers/` — the package service provider (`$PROVIDER_FQCN`), auto-discovered by Laravel.
+- `src/Http/Controllers/` — a thin controller extending the base.
+- `routes/web.php` — the license routes, loaded inside a configurable group.
+- `config/$CONFIG_KEY$.php` — routes, permission, and redirect settings.
+- `resources/views/` — the `$VIEW_NAMESPACE$::*` Blade views. Restyle freely.
+- `resources/js/` — progressive-enhancement JavaScript.
+
+## Customising
+
+Edit the views and config directly — nothing here is overwritten by composer
+updates. To change behaviour shared with other apps, contribute upstream to
+`$BASE_PACKAGE$`.
+
+## Publishing the assets
+
+```bash
+php artisan vendor:publish --tag=$CONFIG_KEY$-config
+```

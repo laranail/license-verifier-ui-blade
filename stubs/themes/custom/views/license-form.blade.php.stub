@@ -1,0 +1,28 @@
+{{--
+    Activation form (CUSTOM theme).
+    A bare, accessible skeleton wired to the endpoints — bring your own classes.
+    Hooks: [data-lv-form], [data-lv-message]. $fields = active driver fields.
+--}}
+<form class="lv-license-form" method="POST" action="{{ route('$ROUTE_NAME_PREFIX$activate') }}" data-lv-form @if (config('$CONFIG_KEY$.redirect_after_activation')) data-lv-redirect="{{ config('$CONFIG_KEY$.redirect_after_activation') }}" @endif>
+    @csrf
+    @foreach ($fields as $field)
+        @php($name = $field['name'] ?? 'license_key')
+        @php($type = $field['type'] ?? 'text')
+        @php($label = $field['label'] ?? \Illuminate\Support\Str::headline($name))
+        {{-- TODO: style this field for your design system --}}
+        <div class="lv-field" data-lv-field="{{ $name }}">
+            @if ($type === 'checkbox')
+                <label><input type="checkbox" name="{{ $name }}" value="1"> {{ $label }}</label>
+            @else
+                <label for="lv-{{ $name }}">{{ $label }}</label>
+                <input id="lv-{{ $name }}" type="{{ $type }}" name="{{ $name }}"
+                       @if ($field['required'] ?? false) required @endif
+                       placeholder="{{ $field['placeholder'] ?? '' }}">
+            @endif
+        </div>
+    @endforeach
+
+    {{-- TODO: replace with your button component --}}
+    <button type="submit">{{ __('license-verifier::license-verifier.activate') }}</button>
+    <p data-lv-message role="status" aria-live="polite"></p>
+</form>

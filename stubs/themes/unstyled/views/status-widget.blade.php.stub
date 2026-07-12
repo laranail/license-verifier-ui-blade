@@ -1,0 +1,5 @@
+{{-- License status (unstyled). Pass $status (label) and $valid (bool). --}}
+<span class="lv-status-widget" data-lv-status-widget data-lv-valid="{{ ($valid ?? false) ? 'true' : 'false' }}">
+    <span class="lv-status-widget__dot" aria-hidden="true"></span>
+    <span class="lv-status-widget__label">{{ $status ?? __('license-verifier::license-verifier.status') }}</span>
+</span>

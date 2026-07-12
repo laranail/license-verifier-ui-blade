@@ -1,0 +1,15 @@
+{{-- License settings panel (CUSTOM theme). Pass $info (LicenseInfo). --}}
+<section data-lv-settings>
+    {{-- TODO: lay this out in your design system --}}
+    <h2>{{ __('license-verifier::license-verifier.license') }}</h2>
+    <dl>
+        <dt>{{ __('license-verifier::license-verifier.status') }}</dt>
+        <dd>{{ $info->status->label() ?? $info->status->value }}</dd>
+        <dt>{{ __('license-verifier::license-verifier.licensed_to') }}</dt>
+        <dd>{{ $info->licensedTo ?? '—' }}</dd>
+    </dl>
+    <form method="POST" action="{{ route('$ROUTE_NAME_PREFIX$deactivate') }}" data-lv-form>
+        @csrf
+        <button type="submit">{{ __('license-verifier::license-verifier.deactivate') }}</button>
+    </form>
+</section>

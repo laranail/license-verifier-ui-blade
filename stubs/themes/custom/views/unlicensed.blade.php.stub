@@ -1,0 +1,22 @@
+{{--
+    Unlicensed page (CUSTOM theme).
+    Wrap this in your app layout or replace entirely; it only needs the form
+    include and the bundled JS asset.
+--}}
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ __('license-verifier::license-verifier.activation') }}</title>
+    {{-- TODO: pull in your own CSS / @vite([...]) here --}}
+</head>
+<body>
+    <main>
+        <h1>{{ __('license-verifier::license-verifier.activation') }}</h1>
+        @include('$VIEW_NAMESPACE$::license-form')
+    </main>
+    <script src="{{ asset('$ASSET_PATH$/license-verifier.js') }}"></script>
+</body>
+</html>

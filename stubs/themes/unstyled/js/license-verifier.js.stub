@@ -1,0 +1,53 @@
+/**
+ * Vanilla-JS interactions for the $PRESET_LABEL$ license UI ($THEME$).
+ * Toggles .is-success / .is-error on [data-lv-message]; style them yourself.
+ */
+(function () {
+    'use strict';
+
+    function csrf() {
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.getAttribute('content') : '';
+    }
+
+    function setMessage(form, text, ok) {
+        const el = form.querySelector('[data-lv-message]');
+        if (!el) return;
+        el.textContent = text || '';
+        el.classList.toggle('is-success', !!ok);
+        el.classList.toggle('is-error', !ok);
+    }
+
+    async function submit(form) {
+        const res = await fetch(form.getAttribute('action'), {
+            method: (form.getAttribute('method') || 'POST').toUpperCase(),
+            headers: { 'X-CSRF-TOKEN': csrf(), Accept: 'application/json' },
+            body: new FormData(form),
+        });
+        let payload = {};
+        try { payload = await res.json(); } catch (e) { /* noop */ }
+        setMessage(form, payload.message || (res.ok ? 'OK' : 'Error'), res.ok);
+
+        if (res.ok) {
+            const redirect = form.getAttribute('data-lv-redirect');
+            if (redirect) window.location.assign(redirect);
+        }
+    }
+
+    document.addEventListener('submit', function (event) {
+        const form = event.target.closest('[data-lv-form]');
+        if (!form) return;
+        event.preventDefault();
+        submit(form);
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.closest('[data-lv-modal-open]')) {
+            document.querySelectorAll('[data-lv-modal]').forEach((m) => m.removeAttribute('hidden'));
+        }
+        if (event.target.closest('[data-lv-modal-close]')) {
+            const modal = event.target.closest('[data-lv-modal]');
+            if (modal) modal.setAttribute('hidden', '');
+        }
+    });
+})();

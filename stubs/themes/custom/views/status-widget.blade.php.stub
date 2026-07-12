@@ -1,0 +1,5 @@
+{{-- License status (CUSTOM theme). Pass $status (label) and $valid (bool). --}}
+<span data-lv-status-widget data-lv-valid="{{ ($valid ?? false) ? 'true' : 'false' }}">
+    {{-- TODO: render your own indicator --}}
+    {{ $status ?? __('license-verifier::license-verifier.status') }}
+</span>

@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$\Providers;
+
+use $BASE_NAMESPACE$\Blade\Providers\BaseBladePresetServiceProvider;
+
+final class $PROVIDER_CLASS$ extends BaseBladePresetServiceProvider
+{
+    protected function viewNamespace(): string
+    {
+        return '$VIEW_NAMESPACE$';
+    }
+
+    protected function configKey(): string
+    {
+        return '$CONFIG_KEY$';
+    }
+}

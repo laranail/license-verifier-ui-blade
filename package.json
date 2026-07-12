@@ -1,0 +1,15 @@
+{
+    "name": "license-verifier-ui-blade",
+    "description": "JS test harness for the generated Blade license-verifier scripts.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "happy-dom": "^20.10.6",
+        "vitest": "^3.2.6"
+    }
+}

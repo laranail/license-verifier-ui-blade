@@ -1,0 +1,16 @@
+{{-- License settings panel (unstyled). Pass $info (LicenseInfo). --}}
+<section class="lv-settings-panel" data-lv-settings>
+    <h2>{{ __('license-verifier::license-verifier.license') }}</h2>
+    <dl>
+        <dt>{{ __('license-verifier::license-verifier.status') }}</dt>
+        <dd>{{ $info->status->label() ?? $info->status->value }}</dd>
+        <dt>{{ __('license-verifier::license-verifier.licensed_to') }}</dt>
+        <dd>{{ $info->licensedTo ?? '—' }}</dd>
+        <dt>{{ __('license-verifier::license-verifier.expires_at') }}</dt>
+        <dd>{{ $info->expiresAt ?? '—' }}</dd>
+    </dl>
+    <form method="POST" action="{{ route('$ROUTE_NAME_PREFIX$deactivate') }}" data-lv-form>
+        @csrf
+        <button class="lv-btn lv-btn--danger" type="submit">{{ __('license-verifier::license-verifier.deactivate') }}</button>
+    </form>
+</section>

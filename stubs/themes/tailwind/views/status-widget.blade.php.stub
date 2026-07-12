@@ -1,0 +1,6 @@
+{{-- License status pill (Tailwind). Pass $status (label) and $valid (bool). --}}
+<div class="lv-status-widget inline-flex items-center gap-2 rounded-full bg-slate-800 px-3 py-1 text-sm"
+     data-lv-status-widget>
+    <span class="h-2.5 w-2.5 rounded-full {{ ($valid ?? false) ? 'bg-emerald-500' : 'bg-rose-500' }}"></span>
+    <span class="font-medium text-slate-200">{{ $status ?? __('license-verifier::license-verifier.status') }}</span>
+</div>

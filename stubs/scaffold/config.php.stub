@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    /*
+    | Route registration for the preset endpoints + pages.
+    */
+    'routes' => [
+        'enabled' => env('LICENSE_VERIFIER_BLADE_ROUTES', true),
+        'prefix' => env('LICENSE_VERIFIER_BLADE_PREFIX', 'license'),
+        'name' => '$ROUTE_NAME_PREFIX$',
+        'middleware' => ['web'],
+    ],
+
+    /*
+    | Authorization gate for managing the license. A Gate ability name, or null
+    | to allow anyone who can reach the routes.
+    */
+    'permission' => env('LICENSE_VERIFIER_BLADE_PERMISSION'),
+
+    /*
+    | Where to redirect after a successful activation (route name or URL).
+    */
+    'redirect_after_activation' => env('LICENSE_VERIFIER_BLADE_REDIRECT'),
+];

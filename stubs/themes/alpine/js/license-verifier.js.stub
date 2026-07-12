@@ -1,0 +1,38 @@
+/**
+ * Alpine.js component for the $PRESET_LABEL$ license UI ($THEME$ theme).
+ * Registers `lvLicenseForm()` used by the activation form / settings panel.
+ */
+document.addEventListener('alpine:init', () => {
+    window.Alpine.data('lvLicenseForm', () => ({
+        loading: false,
+        ok: false,
+        message: '',
+
+        csrf() {
+            const meta = document.querySelector('meta[name="csrf-token"]');
+            return meta ? meta.getAttribute('content') : '';
+        },
+
+        async activate() {
+            this.loading = true;
+            try {
+                const res = await fetch(this.$el.getAttribute('action'), {
+                    method: (this.$el.getAttribute('method') || 'POST').toUpperCase(),
+                    headers: { 'X-CSRF-TOKEN': this.csrf(), Accept: 'application/json' },
+                    body: new FormData(this.$el),
+                });
+                let payload = {};
+                try { payload = await res.json(); } catch (e) { /* noop */ }
+                this.ok = res.ok;
+                this.message = payload.message || (res.ok ? 'OK' : 'Error');
+
+                if (res.ok) {
+                    const redirect = this.$el.getAttribute('data-lv-redirect');
+                    if (redirect) window.location.assign(redirect);
+                }
+            } finally {
+                this.loading = false;
+            }
+        },
+    }));
+});

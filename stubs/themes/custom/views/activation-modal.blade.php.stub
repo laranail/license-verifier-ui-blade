@@ -1,0 +1,9 @@
+{{-- Activation modal (CUSTOM theme). Toggle [data-lv-modal] via the bundled JS. --}}
+<div data-lv-modal hidden>
+    <div data-lv-modal-close></div>
+    <div role="dialog" aria-modal="true" aria-label="{{ __('license-verifier::license-verifier.activation') }}">
+        {{-- TODO: your modal chrome --}}
+        <button type="button" data-lv-modal-close aria-label="Close">&times;</button>
+        @include('$VIEW_NAMESPACE$::license-form')
+    </div>
+</div>

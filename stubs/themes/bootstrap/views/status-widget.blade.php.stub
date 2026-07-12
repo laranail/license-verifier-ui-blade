@@ -1,0 +1,5 @@
+{{-- License status badge (Bootstrap 5). Pass $status (label) and $valid (bool). --}}
+<span class="lv-status-widget badge rounded-pill {{ ($valid ?? false) ? 'text-bg-success' : 'text-bg-danger' }}"
+      data-lv-status-widget>
+    {{ $status ?? __('license-verifier::license-verifier.status') }}
+</span>

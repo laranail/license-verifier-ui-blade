@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$\Http\Controllers;
+
+use $BASE_NAMESPACE$\Blade\Http\Controllers\BaseBladeLicenseController;
+
+final class LicenseController extends BaseBladeLicenseController
+{
+    protected function configKey(): string
+    {
+        return '$CONFIG_KEY$';
+    }
+
+    protected function viewNamespace(): string
+    {
+        return '$VIEW_NAMESPACE$';
+    }
+}

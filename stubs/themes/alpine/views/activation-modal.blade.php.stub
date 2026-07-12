@@ -1,0 +1,16 @@
+{{-- Activation modal (Tailwind + Alpine). Self-contained open/close state. --}}
+<div x-data="{ open: false }" x-on:lv-open-modal.window="open = true" class="lv-modal" data-lv-modal>
+    <template x-if="open">
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/60" x-on:click="open = false"></div>
+            <div class="relative w-full max-w-md rounded-2xl bg-slate-800 p-6 text-slate-100 shadow-2xl ring-1 ring-white/10"
+                 role="dialog" aria-modal="true">
+                <div class="mb-4 flex items-center justify-between">
+                    <h2 class="text-lg font-semibold">{{ __('license-verifier::license-verifier.activation') }}</h2>
+                    <button type="button" class="text-slate-400 hover:text-slate-200" x-on:click="open = false">&times;</button>
+                </div>
+                @include('$VIEW_NAMESPACE$::license-form')
+            </div>
+        </div>
+    </template>
+</div>

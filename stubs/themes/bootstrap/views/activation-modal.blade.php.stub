@@ -1,0 +1,15 @@
+{{-- Activation modal (Bootstrap 5). Toggle via data-bs-toggle or the bundled JS. --}}
+<div class="modal fade lv-modal" tabindex="-1" data-lv-modal aria-hidden="true"
+     aria-label="{{ __('license-verifier::license-verifier.activation') }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5">{{ __('license-verifier::license-verifier.activation') }}</h2>
+                <button type="button" class="btn-close" data-lv-modal-close aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @include('$VIEW_NAMESPACE$::license-form')
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{{-- Driver-aware activation form (Bootstrap 5). --}}
+<form class="lv-license-form" method="POST" action="{{ route('$ROUTE_NAME_PREFIX$activate') }}" data-lv-form @if (config('$CONFIG_KEY$.redirect_after_activation')) data-lv-redirect="{{ config('$CONFIG_KEY$.redirect_after_activation') }}" @endif>
+    @csrf
+    @foreach ($fields as $field)
+        @php($name = $field['name'] ?? 'license_key')
+        @php($type = $field['type'] ?? 'text')
+        @php($label = $field['label'] ?? \Illuminate\Support\Str::headline($name))
+        @if ($type === 'checkbox')
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="{{ $name }}" value="1" id="lv-{{ $name }}">
+                <label class="form-check-label" for="lv-{{ $name }}">{{ $label }}</label>
+            </div>
+        @else
+            <div class="mb-3">
+                <label for="lv-{{ $name }}" class="form-label">{{ $label }}</label>
+                <input id="lv-{{ $name }}" type="{{ $type }}" name="{{ $name }}" class="form-control"
+                       @if ($field['required'] ?? false) required @endif
+                       placeholder="{{ $field['placeholder'] ?? '' }}">
+            </div>
+        @endif
+    @endforeach
+
+    <button type="submit" class="btn btn-primary w-100">{{ __('license-verifier::license-verifier.activate') }}</button>
+    <p class="lv-message small mt-2" data-lv-message role="status" aria-live="polite"></p>
+</form>

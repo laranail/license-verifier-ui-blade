@@ -1,0 +1,13 @@
+{{-- Drop-in activation modal (Tailwind). Toggle [data-lv-modal] hidden attribute. --}}
+<div class="lv-modal fixed inset-0 z-50 hidden items-center justify-center p-4" data-lv-modal>
+    <div class="absolute inset-0 bg-black/60" data-lv-modal-close></div>
+    <div class="relative w-full max-w-md rounded-2xl bg-slate-800 p-6 text-slate-100 shadow-2xl ring-1 ring-white/10"
+         role="dialog" aria-modal="true"
+         aria-label="{{ __('license-verifier::license-verifier.activation') }}">
+        <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-lg font-semibold">{{ __('license-verifier::license-verifier.activation') }}</h2>
+            <button type="button" class="text-slate-400 hover:text-slate-200" data-lv-modal-close aria-label="Close">&times;</button>
+        </div>
+        @include('$VIEW_NAMESPACE$::license-form')
+    </div>
+</div>
